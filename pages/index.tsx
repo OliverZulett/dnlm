@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-    <button class="btn">Hello</button>
+    <button className="btn">Hello</button>
   )
 }
