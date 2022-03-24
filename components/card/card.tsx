@@ -1,7 +1,20 @@
 import Image from "next/image";
 import React from "react";
 
-function Card() {
+export interface CardProps {
+  name: string;
+  image: string;
+  description: string;
+  rating: number;
+}
+
+function Card(props: CardProps) {
+  const {
+    name,
+    image,
+    description,
+    rating
+  } = props;
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>
@@ -14,7 +27,7 @@ function Card() {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
+        <h2 className="card-title">{name}</h2>
         {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
         <div className="rating gap-1">
           <input type="radio" name="rating-3" className="mask mask-heart bg-red-400" />
