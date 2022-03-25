@@ -1,0 +1,15 @@
+.card {
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  &:hover{
+    .body{
+      display: flex;
+      transition: all 3s ease-in-out 3s;
+    }
+  }
+  .body {
+    display: none;
+    background-color: #383838ad;
+  }
+}

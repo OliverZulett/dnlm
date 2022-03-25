@@ -8,7 +8,7 @@ export default function Home({ movies }) {
   return (
     <Fragment>
       <Navbar />
-      <Hero />
+      {/* <Hero /> */}
       <GridSection title="BEST MOVIES" items={movies} />
       {/* <GridSection title="BEST SERIES" /> */}
       <Footer />

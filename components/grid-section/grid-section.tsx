@@ -15,7 +15,7 @@ function GridSection(props: GridSectionProps) {
       <div className="grid-section__container--title">
         <h1 className="text-3xl font-bold">{title}</h1>
       </div>
-      <div className="grid-section__container--grid grid grid-cols-3 gap-3 py-10">
+      <div className="grid-section__container--grid grid grid-cols-4 gap-4 py-10">
         {items.map((item) => (
           <Card
             id={item._id}

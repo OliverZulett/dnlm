@@ -41,7 +41,7 @@ function Navbar() {
       </div>
       <div className="navbar-center">
         <Link href={`/`}>
-          <a className="btn btn-ghost normal-case text-xl">
+          <a className="btn btn-ghost normal-case text-xl text-primary">
             De NETFLIX lo mejor
           </a>
         </Link>
