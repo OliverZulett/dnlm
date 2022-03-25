@@ -18,6 +18,7 @@ function GridSection(props: GridSectionProps) {
       <div className="grid-section__container--grid grid grid-cols-4 gap-4 py-10">
         {items.map((item) => (
           <Card
+            id={item._id}
             name={item.name}
             image={item.image}
             description={item.description}

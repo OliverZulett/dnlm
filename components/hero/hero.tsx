@@ -6,7 +6,7 @@ function Hero() {
     <div className="hero min-h-screen bg-base-200 px-32">
       <div className="hero-content flex-col lg:flex-row">
         <Image
-          src="/example-image.jpg"
+          src="photo/2016/08/24/03/22/pitman-theatre-1616083_960_720.jpg"
           alt="Picture of the author"
           className="max-w-sm rounded-lg shadow-2xl w-80"
           width={260}

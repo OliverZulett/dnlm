@@ -5,8 +5,6 @@ import GridSection from "../components/grid-section/grid-section";
 import Footer from "../components/footer/footer";
 
 export default function Home({ movies }) {
-  console.log(movies);
-
   return (
     <Fragment>
       <Navbar />
