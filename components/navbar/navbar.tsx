@@ -74,7 +74,7 @@ function Navbar() {
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link href={`/`}>
+                    <Link href={`/movies/create`}>
                       <a>Pelicula</a>
                     </Link>
                   </li>
