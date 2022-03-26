@@ -13,11 +13,12 @@ function GridSection(props: GridSectionProps) {
   return (
     <div className="grid-section__container px-32 py-10">
       <div className="grid-section__container--title">
-        <h1 className="text-3xl font-bold">{title}</h1>
+        <h1 className="text-3xl font-alata">{title}</h1>
       </div>
       <div className="grid-section__container--grid grid grid-cols-4 gap-4 py-10">
         {items.map((item) => (
           <Card
+            key={item._id}
             id={item._id}
             name={item.name}
             image={item.image}

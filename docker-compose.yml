@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   movies-api:
-    image: movies-api:local
+    image: sudo77/movies-api:latest
     container_name: movies-api
     hostname: movies-api-host
     environment:

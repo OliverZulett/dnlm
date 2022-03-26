@@ -32,7 +32,7 @@ function Movie(props: any) {
           </div>
           <div className="flex justify-center items-start">
             <div className="pr-52 pt-12">
-              <h1 className="text-5xl font-semibold">
+              <h1 className="text-6xl font-alata">
                 {name}
               </h1>
               <div className="rating gap-1 mt-5">
@@ -63,7 +63,7 @@ function Movie(props: any) {
                   className="mask mask-heart bg-green-400"
                 />
               </div>
-              <p className="italic text-lg mt-5">
+              <p className="italic text-lg mt-5 font-opensans">
                 {description}
               </p>
             </div>

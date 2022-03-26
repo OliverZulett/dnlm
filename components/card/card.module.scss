@@ -5,11 +5,13 @@
   &:hover{
     .body{
       display: flex;
-      transition: all 3s ease-in-out 3s;
+      opacity: 1;
     }
   }
   .body {
+    transition: all 3s ease-in-out 3s;
     display: none;
-    background-color: #383838ad;
+    // opacity: 0;
+    background-color: #1313139a;
   }
 }
