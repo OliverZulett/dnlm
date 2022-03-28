@@ -47,3 +47,29 @@ export const postMovie = async (movie: string) => {
     console.error(error)
   }
 }
+
+export const getMovie = async (id: string) => {
+  const headers = new Headers();
+  headers.set(
+    "Authorization",
+    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
+  );
+  headers.set(
+    "Content-Type",
+    "application/json"
+  )
+  const options = {
+    method: 'GET',
+    headers: headers,
+  }
+  try {
+    const response = await fetch(
+      `${movieApiUrl}/${id}`,
+      options
+    )
+    const movie = await response.json();
+    return movie;
+  } catch (error) {
+    console.error(error)
+  }
+}

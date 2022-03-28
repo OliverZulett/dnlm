@@ -3,6 +3,8 @@ import React from "react";
 import { Fragment } from "react";
 import Navbar from "../../components/navbar/navbar";
 import Footer from '../../components/footer/footer';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export interface MovieProps {
   name?: string;
@@ -13,9 +15,11 @@ export interface MovieProps {
 
 function Movie(props: any) {
   const { name, image, description, rating } = props;
+  const router = useRouter();
+  const {id} = router.query;
   const IMAGE_API = 'https://cdn.pixabay.com/';
   const imagePath = image.slice(IMAGE_API.length);
-
+  
   return (
     <Fragment>
       <Navbar />
@@ -66,6 +70,12 @@ function Movie(props: any) {
               <p className="italic text-lg mt-5 font-opensans">
                 {description}
               </p>
+              <div className="controls flex justify-start mt-10">
+                <Link href={`/movies/edit/${id}`} passHref>
+                  <button className="btn btn-outline btn-success">Editar</button>
+                </Link>
+                <button className="btn btn-outline btn-error ml-5">Eliminar</button>
+              </div>
             </div>
           </div>
         </div>
@@ -76,6 +86,7 @@ function Movie(props: any) {
 }
 
 export default Movie;
+
 export async function getStaticPaths() {
   const url = `${process.env.API_HOST}:${process.env.API_PORT}/api/movies/`;
   const username = `${process.env.API_USER}`;

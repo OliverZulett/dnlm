@@ -1,13 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { postMovie } from "../../api/movies.api";
+import { getMovie, postMovie } from "../../api/movies.api";
 import { useRouter } from "next/router";
 
-export interface FormProps {}
+export interface FormProps {
+  name?: string;
+  image?: string;
+  description?: string;
+  rating?: number;
+}
 
 const Form = (props: FormProps) => {
-  const router = useRouter()
+  const router = useRouter();
+  const { name, image, description, rating } = props;
 
+  console.log(name, image, description, rating);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -40,6 +48,7 @@ const Form = (props: FormProps) => {
             required
             placeholder="Titulo"
             className="input input-bordered input-primary w-full"
+            value={name}
           ></input>
         </div>
         <div className="form-control">
@@ -55,6 +64,7 @@ const Form = (props: FormProps) => {
             required
             placeholder="4"
             className="input input-bordered input-primary w-full"
+            value={rating}
           ></input>
         </div>
         <div className="form-control">
@@ -68,6 +78,7 @@ const Form = (props: FormProps) => {
             required
             className="textarea textarea-primary"
             placeholder="Bio"
+            value={description}
           ></textarea>
         </div>
         <div className="form-control">
@@ -81,6 +92,7 @@ const Form = (props: FormProps) => {
             type="text"
             placeholder="https://myimage.com/img.png"
             className="input input-bordered input-primary w-full"
+            value={image}
           ></input>
         </div>
         <div className="avatar mt-5">
