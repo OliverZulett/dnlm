@@ -17,7 +17,7 @@ function Card(props: CardProps) {
 
   return (
     <div
-      className={`card w-72 h-96 bg-base-100 shadow-xl ${styles.card}`}
+      className={`card w-72 md:w-96 h-96 bg-base-100 shadow-xl mb-10 md:mb-0 ${styles.card}`}
       style={{
         backgroundImage: "url(" + `${image}` + ")",
       }}

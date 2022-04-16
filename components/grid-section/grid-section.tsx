@@ -11,23 +11,44 @@ export interface GridSectionProps {
 function GridSection(props: GridSectionProps) {
   const { title, items } = props;
   return (
-    <div className="grid-section__container px-32 py-10">
-      <div className="grid-section__container--title">
+    // px-32 py-10
+    <div className="grid-section__container w-screen">
+      <div className="grid-section__container--title my-10 mx-5 md:mx-10 lg:mx-14 xl:mx-20">
         <h1 className="text-3xl font-alata">{title}</h1>
       </div>
-      <div className="grid-section__container--grid grid grid-cols-4 gap-4 py-10">
+      {/* py-10 */}
+      {/* grid grid-cols-1 gap-1  */}
+      <div className="
+        grid-section__container--grid 
+        flex 
+        flex-col 
+        items-center 
+        md:grid 
+        md:grid-cols-2 
+        md:gap-4 
+        md:mx-10
+        lg:grid-cols-4
+        lg:gap-7
+        lg:mx-14
+        2xl:grid-cols-6
+        2xl:gap-6
+        2xl:mx-20
+        "
+        >
         {items.map((item) => (
-          <Card
-            key={item._id}
-            id={item._id}
-            name={item.name}
-            image={item.image}
-            description={item.description}
-            rating={item.rating}
-          />
+          <div className="flex items-center justify-center">
+            <Card
+              key={item._id}
+              id={item._id}
+              name={item.name}
+              image={item.image}
+              description={item.description}
+              rating={item.rating}
+            />
+          </div>
         ))}
       </div>
-      <div className="grid-section__container--pagination flex justify-center">
+      <div className="grid-section__container--pagination flex justify-center my-10">
         <Pagination />
       </div>
     </div>
