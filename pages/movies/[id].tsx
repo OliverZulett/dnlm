@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 import { Fragment } from "react";
 import Navbar from "../../components/navbar/navbar";
-import Footer from '../../components/footer/footer';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import Footer from "../../components/footer/footer";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export interface MovieProps {
   name?: string;
@@ -16,29 +16,31 @@ export interface MovieProps {
 function Movie(props: any) {
   const { name, image, description, rating } = props;
   const router = useRouter();
-  const {id} = router.query;
-  const IMAGE_API = 'https://cdn.pixabay.com/';
+  const { id } = router.query;
+  const IMAGE_API = "https://cdn.pixabay.com/";
   const imagePath = image.slice(IMAGE_API.length);
-  
+
   return (
     <Fragment>
-      <Navbar />
-      <div className="container mx-auto my-14">
-        <div className="grid grid-cols-2 gap-2">
-          <div className="flex justify-end items-center pr-28">
-            <Image
-              src={imagePath}
-              alt="Picture of the author"
-              className="max-w-sm rounded-lg shadow-2xl w-80"
-              width={400}
-              height={600}
-            />
-          </div>
-          <div className="flex justify-center items-start">
-            <div className="pr-52 pt-12">
-              <h1 className="text-6xl font-alata">
-                {name}
-              </h1>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <div className="w-full px-8 sm:px-20 mt-5 mb-10 flex grow">
+          <div className="flex flex-col md:flex-row">
+            <div className="flex justify-center items-center mb-10 md:w-3/6">
+              <div className="avatar flex justify-center items-center">
+                <div className="w-4/5 mask mask-hexagon">
+                  <Image
+                    src={imagePath}
+                    alt="Picture of the author"
+                    className="max-w-sm rounded-lg shadow-2xl w-80"
+                    width={400}
+                    height={600}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col md:w-3/6">
+              <h1 className="text-5xl font-alata">{name}</h1>
               <div className="rating gap-1 mt-5">
                 <input
                   type="radio"
@@ -67,14 +69,14 @@ function Movie(props: any) {
                   className="mask mask-heart bg-green-400"
                 />
               </div>
-              <p className="italic text-lg mt-5 font-opensans">
-                {description}
-              </p>
+              <p className="italic text-lg mt-5 font-opensans">{description}</p>
               <div className="controls flex justify-start mt-10">
                 <Link href={`/movies/edit/${id}`} passHref>
                   <button className="btn btn-outline btn-success">Editar</button>
                 </Link>
-                <button className="btn btn-outline btn-error ml-5">Eliminar</button>
+                <button className="btn btn-outline btn-error ml-5">
+                  Eliminar
+                </button>
               </div>
             </div>
           </div>
@@ -104,11 +106,11 @@ export async function getStaticPaths() {
   const paths = movies.map((movie) => ({
     params: { id: movie._id },
   }));
-  return { paths, fallback: false }
+  return { paths, fallback: false };
 }
 
-export async function getStaticProps({params}) {
-  const {id} = params;
+export async function getStaticProps({ params }) {
+  const { id } = params;
   const url = `${process.env.API_HOST}:${process.env.API_PORT}/api/movies/${id}`;
   const username = `${process.env.API_USER}`;
   const password = `${process.env.API_PASS}`;
@@ -122,8 +124,8 @@ export async function getStaticProps({params}) {
     headers: headers,
   });
   const movie = await res.json();
-  
+
   return {
-    props: movie
+    props: movie,
   };
 }
