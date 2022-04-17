@@ -7,7 +7,7 @@ import Footer from "../components/footer/footer";
 export default function Home({ movies }) {
   return (
     <Fragment>
-      {/* <Navbar /> */}
+      <Navbar />
       {/* <Hero /> */}
       <GridSection title="Las Mejores Peliculas" items={movies} />
       {/* <GridSection title="Las Mejores Series" items={movies} /> */}

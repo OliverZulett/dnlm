@@ -12,7 +12,7 @@ function GridSection(props: GridSectionProps) {
   const { title, items } = props;
   return (
     // px-32 py-10
-    <div className="grid-section__container w-screen">
+    <div className="grid-section__container w-full">
       <div className="grid-section__container--title my-10 mx-5 md:mx-10 lg:mx-14 xl:mx-20">
         <h1 className="text-3xl font-alata">{title}</h1>
       </div>
@@ -23,10 +23,12 @@ function GridSection(props: GridSectionProps) {
         flex 
         flex-col 
         items-center 
-        md:grid 
-        md:grid-cols-2 
+        sm:grid 
+        sm:grid-cols-2 
+        sm:gap-4 
+        sm:mx-10
+        md:grid-cols-3
         md:gap-4 
-        md:mx-10
         lg:grid-cols-4
         lg:gap-7
         lg:mx-14
