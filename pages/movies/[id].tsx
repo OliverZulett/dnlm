@@ -25,9 +25,9 @@ function Movie(props: any) {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <div className="w-full px-8 sm:px-20 mt-5 mb-10 flex grow">
-          <div className="flex flex-col md:flex-row">
-            <div className="flex justify-center items-center mb-10 md:w-3/6">
-              <div className="avatar flex justify-center items-center">
+          <div className="flex flex-col lg:flex-row">
+            <div className="flex justify-center items-center mb-10 lg:w-3/6">
+              <div className="avatar flex justify-center items-center lg:hidden">
                 <div className="w-4/5 mask mask-hexagon">
                   <Image
                     src={imagePath}
@@ -38,8 +38,16 @@ function Movie(props: any) {
                   />
                 </div>
               </div>
+              <div className="mask mask-squircle hidden lg:flex">
+                <Image
+                  src={imagePath}
+                  alt="Picture of the author"
+                  width={400}
+                  height={600}
+                />
+              </div>
             </div>
-            <div className="flex flex-col md:w-3/6">
+            <div className="flex flex-col lg:w-3/6 lg:justify-center xl:pr-60">
               <h1 className="text-5xl font-alata">{name}</h1>
               <div className="rating gap-1 mt-5">
                 <input
@@ -72,7 +80,9 @@ function Movie(props: any) {
               <p className="italic text-lg mt-5 font-opensans">{description}</p>
               <div className="controls flex justify-start mt-10">
                 <Link href={`/movies/edit/${id}`} passHref>
-                  <button className="btn btn-outline btn-success">Editar</button>
+                  <button className="btn btn-outline btn-success">
+                    Editar
+                  </button>
                 </Link>
                 <button className="btn btn-outline btn-error ml-5">
                   Eliminar
