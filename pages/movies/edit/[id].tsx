@@ -9,7 +9,6 @@ const EditMovie = (props: any) => {
   const { name, image, description, rating } = props;
   const router = useRouter();
   const {id} = router.query;
-  console.log(name, image, description, rating);
   
   return (
     <Fragment>

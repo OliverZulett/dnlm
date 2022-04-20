@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { getMovie, postMovie } from "../../api/movies.api";
+import { postMovie } from "../../api/movies.api";
 import { useRouter } from "next/router";
 
 export interface FormProps {
@@ -13,9 +12,6 @@ export interface FormProps {
 const Form = (props: FormProps) => {
   const router = useRouter();
   const { name, image, description, rating } = props;
-
-  console.log(name, image, description, rating);
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -26,7 +22,7 @@ const Form = (props: FormProps) => {
     };
     const JSONdata = JSON.stringify(data);
     const newMovie = await postMovie(JSONdata);
-    router.push(`/movies/${newMovie._id}`)
+    router.push(`/movies/${newMovie._id}`);
   };
 
   return (

@@ -1,7 +1,7 @@
 // const movieApiUrl = `${process.env.API_HOST}:${process.env.API_PORT}/api/movies/`;
 // const movieApiUsername = `${process.env.API_USER}`;
 // const movieApiPassword = `${process.env.API_PASS}`;
-const movieApiUrl = `http://localhost:7001/api/movies/`;
+const movieApiUrl = `http://localhost:7001/api/movies`;
 const movieApiUsername = `movies_api_user`;
 const movieApiPassword = `movies_api_pass`;
 
@@ -69,6 +69,34 @@ export const getMovie = async (id: string) => {
     )
     const movie = await response.json();
     return movie;
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const deleteMovie = async (id: string) => {
+  const headers = new Headers();
+  headers.set(
+    "Authorization",
+    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
+  );
+  headers.set(
+    "Content-Type",
+    "application/json"
+  )
+  const options = {
+    method: 'DELETE',
+    headers: headers,
+  }
+  try {
+    const response = await fetch(
+      `${movieApiUrl}/${id}`,
+      options
+    )
+    const resp = await response.json();
+    console.log(`${movieApiUrl}/${id}`);
+    console.log(resp);
+    // return movie;
   } catch (error) {
     console.error(error)
   }

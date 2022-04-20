@@ -1,12 +1,13 @@
-import Image from "next/image";
 import React from "react";
 import { Fragment } from "react";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { deleteMovie } from "../../api/movies.api";
 
 export interface MovieProps {
+  _id?: string;
   name?: string;
   image?: string;
   description?: string;
@@ -14,12 +15,15 @@ export interface MovieProps {
 }
 
 function Movie(props: any) {
-  const { name, image, description, rating } = props;
+  const { _id, name, image, description, rating } = props;
   const router = useRouter();
   const { id } = router.query;
-  const IMAGE_API = "https://cdn.pixabay.com/";
-  const imagePath = image.slice(IMAGE_API.length);
 
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    await deleteMovie(_id);
+    router.push(`/`);
+  }
   return (
     <Fragment>
       <div className="min-h-screen flex flex-col">
@@ -27,25 +31,12 @@ function Movie(props: any) {
         <div className="w-full px-8 sm:px-20 mt-5 mb-10 flex grow">
           <div className="flex flex-col lg:flex-row">
             <div className="flex justify-center items-center mb-10 lg:w-3/6">
-              <div className="avatar flex justify-center items-center lg:hidden">
-                <div className="w-4/5 mask mask-hexagon">
-                  <Image
-                    src={imagePath}
-                    alt="Picture of the author"
-                    className="max-w-sm rounded-lg shadow-2xl w-80"
-                    width={400}
-                    height={600}
-                  />
-                </div>
-              </div>
-              <div className="mask mask-squircle hidden lg:flex">
-                <Image
-                  src={imagePath}
-                  alt="Picture of the author"
-                  width={400}
-                  height={600}
-                />
-              </div>
+              <div
+                className="mask mask-hexagon w-96 h-96 lg:h-4/5 lg:w-4/5 bg-cover"
+                style={{
+                  backgroundImage: "url(" + `${image}` + ")",
+                }}
+              ></div>
             </div>
             <div className="flex flex-col lg:w-3/6 lg:justify-center xl:pr-60">
               <h1 className="text-5xl font-alata">{name}</h1>
@@ -84,7 +75,10 @@ function Movie(props: any) {
                     Editar
                   </button>
                 </Link>
-                <button className="btn btn-outline btn-error ml-5">
+                <button 
+                  className="btn btn-outline btn-error ml-5"
+                  onClick={handleDelete}
+                >
                   Eliminar
                 </button>
               </div>
@@ -134,7 +128,6 @@ export async function getStaticProps({ params }) {
     headers: headers,
   });
   const movie = await res.json();
-
   return {
     props: movie,
   };

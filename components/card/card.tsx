@@ -25,7 +25,7 @@ function Card(props: CardProps) {
       <div className={`card-body justify-end ${styles.body}`}>
         <h2 className="card-title text-2xl font-alata">{name}</h2>
         <p className="grow-0 font-opensans">
-          {`${description.slice(0, 150)}...`}
+          {`${description.slice(0, 100)}...`}
         </p>
         <div className="card-actions justify-end">
           <Link href={`/movies/${id}`} passHref>
