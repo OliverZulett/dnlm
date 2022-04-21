@@ -48,6 +48,33 @@ export const postMovie = async (movie: string) => {
   }
 }
 
+export const patchMovie = async (id:string, movie: string) => {
+  const headers = new Headers();
+  headers.set(
+    "Authorization",
+    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
+  );
+  headers.set(
+    "Content-Type",
+    "application/json"
+  )
+  const options = {
+    method: 'PATCH',
+    headers: headers,
+    body: movie
+  }
+  try {
+    const response = await fetch(
+      `${movieApiUrl}/${id}`,
+      options
+    )
+    const newMovie = await response.json();
+    return newMovie;
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const getMovie = async (id: string) => {
   const headers = new Headers();
   headers.set(
