@@ -16,115 +16,128 @@ const headers = () => {
   const headers = new Headers();
   headers.set(
     "Authorization",
-    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
-  ); 
+    "Basic " +
+      Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64")
+  );
   return headers;
-}
+};
 
-export const postMovie = async (movie: string) => {
+export const getMoviesPaginated = async (
+  page: number = 1,
+  pageSize: number = 20,
+  filter: 'name' | 'rating' = 'name',
+  order: 'asc' | 'desc' = 'asc',
+  search: string = ''
+) => {
   const headers = new Headers();
   headers.set(
     "Authorization",
-    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
+    "Basic " +
+      Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64")
   );
-  headers.set(
-    "Content-Type",
-    "application/json"
-  )
+  headers.set("Content-Type", "application/json");
   const options = {
-    method: 'POST',
+    method: "GET",
     headers: headers,
-    body: movie
-  }
+  };
   try {
     const response = await fetch(
-      movieApiUrl,
+      `${movieApiUrl}?page=${page}&pageSize=${pageSize}&filter=${filter}&order=${order}&search=${search}`,
       options
-    )
-    const newMovie = await response.json();
-    return newMovie;
+    );
+    const moviesPaginated = await response.json();
+    console.log(moviesPaginated);
+    
+    return moviesPaginated;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
-
-export const patchMovie = async (id:string, movie: string) => {
-  const headers = new Headers();
-  headers.set(
-    "Authorization",
-    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
-  );
-  headers.set(
-    "Content-Type",
-    "application/json"
-  )
-  const options = {
-    method: 'PATCH',
-    headers: headers,
-    body: movie
-  }
-  try {
-    const response = await fetch(
-      `${movieApiUrl}/${id}`,
-      options
-    )
-    const newMovie = await response.json();
-    return newMovie;
-  } catch (error) {
-    console.error(error)
-  }
-}
+};
 
 export const getMovie = async (id: string) => {
   const headers = new Headers();
   headers.set(
     "Authorization",
-    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
+    "Basic " +
+      Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64")
   );
-  headers.set(
-    "Content-Type",
-    "application/json"
-  )
+  headers.set("Content-Type", "application/json");
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: headers,
-  }
+  };
   try {
-    const response = await fetch(
-      `${movieApiUrl}/${id}`,
-      options
-    )
+    const response = await fetch(`${movieApiUrl}/${id}`, options);
     const movie = await response.json();
     return movie;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
+
+export const postMovie = async (movie: string) => {
+  const headers = new Headers();
+  headers.set(
+    "Authorization",
+    "Basic " +
+      Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64")
+  );
+  headers.set("Content-Type", "application/json");
+  const options = {
+    method: "POST",
+    headers: headers,
+    body: movie,
+  };
+  try {
+    const response = await fetch(movieApiUrl, options);
+    const newMovie = await response.json();
+    return newMovie;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const patchMovie = async (id: string, movie: string) => {
+  const headers = new Headers();
+  headers.set(
+    "Authorization",
+    "Basic " +
+      Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64")
+  );
+  headers.set("Content-Type", "application/json");
+  const options = {
+    method: "PATCH",
+    headers: headers,
+    body: movie,
+  };
+  try {
+    const response = await fetch(`${movieApiUrl}/${id}`, options);
+    const newMovie = await response.json();
+    return newMovie;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const deleteMovie = async (id: string) => {
   const headers = new Headers();
   headers.set(
     "Authorization",
-    "Basic " + Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64"),
+    "Basic " +
+      Buffer.from(movieApiUsername + ":" + movieApiPassword).toString("base64")
   );
-  headers.set(
-    "Content-Type",
-    "application/json"
-  )
+  headers.set("Content-Type", "application/json");
   const options = {
-    method: 'DELETE',
+    method: "DELETE",
     headers: headers,
-  }
+  };
   try {
-    const response = await fetch(
-      `${movieApiUrl}/${id}`,
-      options
-    )
+    const response = await fetch(`${movieApiUrl}/${id}`, options);
     const resp = await response.json();
     console.log(`${movieApiUrl}/${id}`);
     console.log(resp);
     // return movie;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};

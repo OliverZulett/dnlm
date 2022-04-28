@@ -3,6 +3,7 @@ import Hero from "../components/hero/hero";
 import { Fragment } from "react";
 import GridSection from "../components/grid-section/grid-section";
 import Footer from "../components/footer/footer";
+import { getMoviesPaginated } from '../api/movies.api';
 
 export default function Home({ movies }) {
   return (
@@ -30,6 +31,7 @@ export async function getStaticProps(context) {
     headers: headers,
   });
   const movies = await res.json();
+  await getMoviesPaginated();
   return {
     props: { movies },
   };

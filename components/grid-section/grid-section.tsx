@@ -18,7 +18,8 @@ function GridSection(props: GridSectionProps) {
       </div>
       {/* py-10 */}
       {/* grid grid-cols-1 gap-1  */}
-      <div className="
+      <div
+        className="
         grid-section__container--grid 
         flex 
         flex-col 
@@ -36,7 +37,7 @@ function GridSection(props: GridSectionProps) {
         2xl:gap-6
         2xl:mx-20
         "
-        >
+      >
         {items.map((item) => (
           <div className="flex items-center justify-center">
             <Card
